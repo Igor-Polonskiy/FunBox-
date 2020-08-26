@@ -2,20 +2,49 @@ import React, { useState, useEffect } from 'react';
 import './index.css';
 import Cat from './cat.png'
 
-const Bottom__subtitle = ()=>{
-    return(
-      <div>Чего сидишь? Порадуй котэ, купи.</div>
-    )
-  }
 
-const Card = ({ taste, amount, present, weight, status }) => {
+
+const Card = ({ taste, amount, present, weight, status, subtitle }) => {
   const [self_satus, setStatus] = useState(status)
   const [background_class, setBackground_class] = useState('blue__background');
   const [no_display, setNo_display] = useState('no__display');
   const [top__subtitle, setTopSubtitle] = useState('Сказочное заморское яство');
   const [top__subtitle__color, setTopSubtitleColor] = useState('');
-  
+  const [text, setText] =useState('');
+  const [buy, setBuy] =useState('');
+  const [bottomTextcolor, setBottomtextcolor] = useState('')
 
+  useEffect(() => {
+    
+    switch (self_satus) {
+      case 'selected':
+        setBackground_class('red__background');
+        setText(subtitle);
+        setBuy('');
+        setBottomtextcolor('');
+        break
+
+      case 'default':
+        setBackground_class('blue__background');
+        setText('Чего сидишь? Порадуй котэ, ');
+        setBuy('купи.');
+        setBottomtextcolor('');
+        break
+
+      default:
+        setBackground_class('gray__background');
+        setNo_display('')
+        setText('Печалька, ' + taste + ' закончился' );
+        setBottomtextcolor('yellow__color');
+        break
+    }
+  }, [self_satus, taste, subtitle]);
+
+ const BottomSubtitle = ()=>{
+    return(
+      <div className={bottomTextcolor}>{text}<span onClick={handleClick}>{buy}</span></div>
+    )
+  }
 
 
 
@@ -49,23 +78,7 @@ const Card = ({ taste, amount, present, weight, status }) => {
     }
   }
 
-  useEffect(() => {
-    switch (self_satus) {
-      case 'selected':
-        setBackground_class('red__background');
-        break
-
-      case 'default':
-        setBackground_class('blue__background');
-        break
-
-      default:
-        setBackground_class('gray__background');
-        setNo_display('')
-        break
-    }
-  }, [self_satus]);
-
+  
   return (
     <div className="item__container">
       <div className={'card__wrapper ' + background_class} onClick={handleClick} onMouseEnter={handleMouseDown} onMouseLeave={handleMouseLeave}>
@@ -85,7 +98,7 @@ const Card = ({ taste, amount, present, weight, status }) => {
           <div className='kg'>кг</div>
         </div>
       </div>
-      <div className="bottom__subtitle">'Чего сидишь? Порадуй котэ, <span onClick={handleClick}>купи.</span></div>
+      <div className="bottom__subtitle"><BottomSubtitle/></div>
     </div>
   );
 }

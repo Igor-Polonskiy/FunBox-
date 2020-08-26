@@ -17,19 +17,20 @@
 .gray__background {
     background-color: #b3b3b3;
 }
-
+.item__container{
+    margin: 40px;
+}
 .card__wrapper {
     position: relative;
     width: 320px;
     height: 480px;
-    margin: 40px;
     clip-path: polygon(40px 0, 100% 0, 100% 100%, 0 100%, 0 40px);
     border-radius: 12px;
     overflow: hidden;
 }
 
 @media(max-width: 400px) {
-    .card__wrapper {
+    .item__container {
         margin: 40px 0;
     }
 }
@@ -137,10 +138,13 @@
     font-size: 16px;
     color: #e62e7a;
 }
+.yellow__color{
+    color: #ffff66;
+}
 
 .bottom__subtitle {
+    margin-top: 14px;
     font-size: 13px;
-    line-height: 16px;
     color: #ffffff;
     font-family: "Trebuchet MS";
     text-align: center;
