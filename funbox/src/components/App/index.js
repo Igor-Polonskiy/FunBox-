@@ -10,9 +10,9 @@ function App() {
      
           <div className='title'>Ты сегодня покормил кота?</div>
           <div className='card__container'>
-            <Card taste='c Фуф-гра' amount = "10 порций" present = "мышь в подарок"/>
-            <Card />
-            <Card />
+            <Card taste='c фуа-гра' amount = "10 порций" present = "мышь в подарок" weight = '0,5' status='default'/>
+            <Card taste='c рыбой' amount = "40 порций" present = "2 мыши в подарок" weight = '2' status='selected'/>
+            <Card taste='c курой' amount = "100 порций" present = "5 мышей в подарок заказчик дволен" weight = '5'status ='disabled'/>
           </div>
         
       </div>
